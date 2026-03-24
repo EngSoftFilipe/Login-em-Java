@@ -26,6 +26,7 @@ Sistema de login via terminal desenvolvido em Java, com autenticação, limite d
 - **Switch com arrow** `->` — sintaxe moderna do Java
 - **Controle de fluxo** — uso de `do-while` com condição composta ao invés de `break`
 - **Instância e `this`** — uso correto de objetos e referência ao próprio objeto
+- **Método Main mais limpo** — Código mais limpo e mais fácil de manter
 
 ## 🚀 Como executar
 
@@ -37,7 +38,7 @@ Sistema de login via terminal desenvolvido em Java, com autenticação, limite d
 3. Execute:
    ```bash
    java Projetos.Login
-   ```
+   ``` 
 
 ## 🔄 Versões
 
