@@ -1,63 +1,45 @@
-# 📌 Sistema de Login em Java (Console)
+# 🔐 Sistema de Login em Java
 
-Este projeto é um sistema simples de **login via terminal**, desenvolvido em Java, com autenticação, limite de tentativas e um menu interativo após o usuário acessar a conta.
+Sistema de login via terminal desenvolvido em Java, com autenticação, limite de tentativas e gerenciamento de dados do usuário.
 
----
+## 📋 Funcionalidades
 
-## 🚀 Funcionalidades
+- Autenticação com email e senha
+- Bloqueio de acesso após 3 tentativas incorretas
+- Visualização de dados do perfil
+- Alteração de senha com validação
 
-- Validação de email e senha  
-- Limite de **3 tentativas** antes de bloquear o acesso  
-- Exibição de perfil do usuário  
-- Opção para alterar a senha  
-- Menu interativo após o login  
-- Uso adequado de `Scanner`, `equals()` e métodos estáticos  
+## 🏗️ Estrutura do Código
 
----
+| Classe / Elemento | Responsabilidade |
+|---|---|
+| `Dados` | Armazena os dados do usuário |
+| `Itens` (enum) | Centraliza as opções de interação |
+| `opcoes()` | Gerencia prompts e leitura de entrada |
+| `alterarSenha()` | Lógica de alteração de senha isolada |
+| `Menu()` | Exibe o menu de opções |
 
-## 🧩 Estrutura do Projeto
+## 💡 Conceitos Aplicados
 
-### **🔸 Classe interna `Dados`**
-Armazena informações do usuário:
+- **Enum com uso semântico** — `Itens` organiza todas as interações do sistema
+- **Separação de responsabilidades** — cada método tem um papel claro, deixando o `main` limpo
+- **Switch com arrow** `->` — sintaxe moderna do Java
+- **Controle de fluxo** — uso de `do-while` com condição composta ao invés de `break`
+- **Instância e `this`** — uso correto de objetos e referência ao próprio objeto
 
-- Nome  
-- Email  
-- Senha  
+## 🚀 Como executar
 
-Como é `static`, não precisa de múltiplas instâncias.
+1. Clone o repositório
+2. Compile o arquivo:
+   ```bash
+   javac Login.java
+   ```
+3. Execute:
+   ```bash
+   java Projetos.Login
+   ```
 
----
+## 🔄 Versões
 
-### **🔸 Método `perfil()`**
-Exibe todos os dados do usuário logado.
-
----
-
-### **🔸 Método `main()`**
-Responsável por:
-
-- Leitura de email e senha  
-- Controle de tentativas  
-- Exibição de mensagens de erro  
-- Bloqueio após 3 falhas  
-- Menu pós-login  
-- Alteração da senha  
-
----
-
-## 🔐 Fluxo do Login
-
-1. O usuário digita email e senha.  
-2. Se ambos estiverem corretos → **login autorizado**.  
-3. Se estiver errado → mensagem de erro e redução de tentativas.  
-4. Após 3 erros → **ACESSO BLOQUEADO**.
-
-A comparação é feita com `equals()` (necessária para Strings em Java).
-
----
-
-## 📋 Menu de Opções
-
-Após o login, o usuário pode:
-
-
+- **v1** — Lógica centralizada no `main`, switch com `case:` + `break`
+- **v2** — Código refatorado com enum, métodos separados e `main` limpo
