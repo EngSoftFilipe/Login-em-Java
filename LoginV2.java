@@ -4,9 +4,14 @@ import java.util.Scanner;
 public class Login {
 
     static class Dados{
-        String nome = "Filipe";
-        String email = "filipegabriel123@gmail.com";
-        String senha = "@gabriel_filipe123";
+        private String nome = "Filipe";
+        private String email = "filipegabriel123@gmail.com";
+        private String senha = "@gabriel_filipe123";
+
+        public String getNome(){ return nome; }
+        public String getEmail(){ return email; }
+        public String getSenha(){ return senha; }
+        public void setSenha(String senha){ this.senha = senha; } 
     }
 
     public enum Itens{
@@ -16,13 +21,12 @@ public class Login {
     public String opcoes(Itens itens, Dados dados, Scanner entrada){
 
         switch(itens){
-
             case NOME -> System.out.print("Digite seu nome: ");
             case EMAIL -> System.out.print("Digite seu email: ");
             case SENHA -> System.out.print("Digite sua senha: ");
             case ALTERAR_SENHA -> System.out.print("Digite sua senha atual: ");
             case MOSTRAR_DADOS -> {
-                System.out.println("Nome: " + dados.nome + "\nEmail: " + dados.email + "\nSenha: " + dados.senha + "\n");
+                System.out.println("Nome: " + dados.getNome() + "\nEmail: " + dados.getEmail() + "\nSenha: " + dados.getSenha() + "\n");
                 return "";
             }
         }
@@ -41,12 +45,12 @@ public class Login {
     public String alterarSenha(Dados dados, Scanner entrada){
         String senhaAtual = this.opcoes(Itens.ALTERAR_SENHA, dados, entrada);
                     
-        if (!senhaAtual.equals(dados.senha)){
-            return "Senha incorreta.\n"; 
+        if (!senhaAtual.equals(dados.getSenha())){
+            return "Senha incorreta.\n";
         } 
         
         else {
-            dados.senha = this.opcoes(Itens.SENHA, dados, entrada);
+            dados.setSenha(this.opcoes(Itens.SENHA, dados, entrada));
             return "\nSenha alterada com sucesso!\n";
         }
     }
@@ -64,8 +68,8 @@ public class Login {
             String email = login.opcoes(Itens.EMAIL, dados, entrada);
             String senha = login.opcoes(Itens.SENHA, dados, entrada);
 
-            if (email.equals(dados.email) && senha.equals(dados.senha)){
-                System.out.println("\nSeja bem vindo(a), " + dados.nome + "!\n");
+            if (email.equals(dados.getEmail()) && senha.equals(dados.getSenha())){
+                System.out.println("\nSeja bem vindo(a), " + dados.getNome() + "!\n");
                 logado = true;
                 break;
             } 
@@ -86,19 +90,22 @@ public class Login {
         int opcaoDoSwitch;
         
         do {
-
             Menu();
-            opcaoDoSwitch = entrada.nextInt();
-            entrada.nextLine(); 
-
+            String input = entrada.nextLine();
+            
+            try{
+                opcaoDoSwitch = Integer.parseInt(input);
+            } catch (NumberFormatException e){
+                System.out.println("Opção inválida.\n");
+                opcaoDoSwitch = -1;
+                continue;
+            }
+            
             switch (opcaoDoSwitch){
 
                 case 1 -> login.opcoes(Itens.MOSTRAR_DADOS, dados, entrada);
-
                 case 2 -> System.out.println(login.alterarSenha(dados, entrada));
-
                 case 0 -> System.out.println("\nSaindo...\n");
-
                 default -> System.out.println("Opção inválida.\n");       
             }
         } 
